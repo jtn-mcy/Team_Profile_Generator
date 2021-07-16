@@ -1,0 +1,27 @@
+{
+  "name": "Team_Profile_Generator",
+  "version": "1.0.0",
+  "description": "Use a Node.js application to create a team of employees on a software engineering team and an HTML page to display their information!",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NguyenJohnnyT/Team_Profile_Generator.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NguyenJohnnyT/Team_Profile_Generator/issues"
+  },
+  "homepage": "https://github.com/NguyenJohnnyT/Team_Profile_Generator#readme",
+  "dependencies": {
+    "inquirer": "^8.1.2",
+    "jest": "^27.0.6"
+  }
+}
