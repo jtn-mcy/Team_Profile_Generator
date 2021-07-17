@@ -16,23 +16,21 @@ let templateObj = {
 
 async function makeTeam () {
     const teamResponse = await inquirer.prompt(qPrompt.promptInit);
-    console.log(teamResponse);
-    templateObj.teamName = teamResponse;
+    templateObj.teamName = teamResponse; //add team name
     const managerResponse = await inquirer.prompt(qPrompt.promptManager)
-    console.log(managerResponse)
-    templateObj.manager = managerResponse;
-    while (addMoreEmployees) {
+    templateObj.manager = managerResponse; //add manager profile to templateObj manager property
+    while (addMoreEmployees) { //continue making employees until addMoreEmployees is false
         const createMore = await inquirer.prompt(qPrompt.promptAddOrExit)
         if (createMore.addOrExit === 'Exit and create HTML file?') {
-            addMoreEmployees = false
+            addMoreEmployees = false //if false, exit out loop
         } else {
-            let newEmployee = await inquirer.prompt(qPrompt.promptEngOrInt)
+            let newEmployee = await inquirer.prompt(qPrompt.promptEngOrInt) //ask if want to add engineer or intern
             if (newEmployee.engOrInt === 'Add an engineer?') {
                 let newEng = await inquirer.prompt(qPrompt.promptEng);
-                templateObj.eng = [...templateObj.eng, newEng]; 
+                templateObj.eng = [...templateObj.eng, newEng]; //create engineer and add to templateObj eng property
             } else {
                 let newIntern = await inquirer.prompt(qPrompt.promptIntern)
-                templateObj.intern = [...templateObj.intern, newIntern]
+                templateObj.intern = [...templateObj.intern, newIntern] //create intern and add to templateObj intern property
             }
         }
     }
