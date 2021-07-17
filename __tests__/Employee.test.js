@@ -1,5 +1,4 @@
 const { Employee } = require('../lib/classes.js')
-// const classes = require('./lib/classes.js')
 
 describe("Employee", () => {
     describe("Initialization", () => {
