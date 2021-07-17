@@ -109,7 +109,7 @@ const promptIntern = [
         name: 'internEmail'
     },
     {
-        type: 'number',
+        type: 'input',
         message: 'Enter Intern\'s school',
         name: 'internSchool'
     }
