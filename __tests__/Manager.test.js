@@ -2,7 +2,7 @@ const { Manager } = require('../lib/classes.js')
 
 describe("Manager", () => {
     describe("Initialization", () => {
-        it("should create an object with a name, id, and email with associated class methods getName, getID, getEmail, getOffice, getPosition", () => {
+        it("should create an object with a name, id, and email with associated class methods  getPosition", () => {
             const manager = new Manager('Kenny', 1, "kenny@test.com", 101);
 
             expect(manager).toMatchObject({
@@ -13,7 +13,7 @@ describe("Manager", () => {
                 // getName: expect.any(Function), 
                 // getId: expect.any(Function), 
                 // getEmail: expect.any(Function), 
-                getOffice: expect.any(Function), 
+                // getOffice: expect.any(Function), 
                 getPosition: expect.any(Function)})
        });
         it("should throw an error if negative number", () => {
@@ -32,8 +32,9 @@ describe("Manager", () => {
             expect(cb).toThrowError(err);
         });
     });
+    
     describe('Methods', () => {
-        it('should obtain the position', () => {
+        it('should obtain the position of the employee', () => {
             const manager = new Manager('Kenny', 1, "kenny@test.com", 101);
             position = manager.getPosition();
             expect(position).toEqual('Manager');
