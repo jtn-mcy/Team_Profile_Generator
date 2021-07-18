@@ -25,7 +25,15 @@ const promptInit = [
 ]
 
 
-//Question 2
+//Question 2 - Returns a manager object
+/**
+ * *{
+ *  *managerName: name
+ *  *managerID: id
+ *  *managerEmail: email
+ *  *managerOffice: office
+ * *}
+ */
 const promptManager = [
     {
         type: 'input',
