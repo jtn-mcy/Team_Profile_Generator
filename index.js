@@ -1,4 +1,4 @@
-// const fm = require('fs');
+// const fs = require('fs');
 const inquirer = require('inquirer');
 // const { Engineer, Intern } = require('./lib/classes.js');
 const qPrompt = require('./src/promptQuestions.js')
@@ -56,6 +56,12 @@ async function makeTeam () {
             }
         }
     }
+    htmlTemplate = generate.generateHTML(templateObj);  //create html file with the ${teamName} as document title
+    fileName = `${templateObj.teamName[0].teamName.split(' ').join('')}.html`
+    fs.writeFile(`${templateObj.teamName[0].teamName.split(' ').join('')}.html`, htmlTemplate, (err) => {
+        err ? console.error(err) : console.log('html template created!')
+    });
+
     return console.log('OBJECT for HTML WRITING', templateObj)
 }
 
