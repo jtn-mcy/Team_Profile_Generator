@@ -1,5 +1,4 @@
 let employeeCardsEl = ``
-
 // Generate Cards
 //Employee card
 // !figure out how to change ${classAttr} to a subclass attribute
@@ -53,37 +52,33 @@ const generateHTML = (templateObject, employeeCards) => {
 // TODO: Take templateObj from index.js, and create an array that contains each employee object
 // TODO: Use the new array and generate template literals to append to the HTML file, and join them.
 
-const generateCardTempLiteral = (employeeArr) => {
-    return employeeLiteral
-}
-
 const generateCards = (templateObject) => { //arr = [cardTemplate1, cardTemplate2, ...]
     generateManagerCard(templateObject);
     generateEngineerCards(templateObject);
     generateInternCards(templateObject);
-    generateHTML(templateObject, employeeCardsEl)
+    htmlFile = generateHTML(templateObject, employeeCardsEl)
+    return htmlFile
 }
 
 const generateManagerCard = (templateObject) => {
-    const {managerName, managerEmail, managerID, managerOffice} = templateObject.manager
-    let role = templateObject.manager.position
     let template = `
-<div class="card m-2 p-0" style="width: 18rem; ">
-    <div class='bg-success p-4'>
-        <h4 class="card-title">${managerName}</h4>
-        <h5 class="card-title">${role}</h5>
-    </div>
-    <div class="card-body bg-white">
-        <p class="card-text ">
-            <p class='row flex-column'>
-                <p class='col p-3 m-0 border'>${managerID}</p>
-                <p class='col p-3 m-0 border'>${managerEmail}</p>
-                <p class='col p-3 m-0 border'>${managerOffice}</p>
-            </p>
-        </p>
-    </div>
-</div>
+                <div class="card m-2 p-0" style="width: 18rem; ">
+                    <div class='bg-success p-4'>
+                        <h4 class="card-title">${templateObject.manager.name}</h4>
+                        <h5 class="card-title">${templateObject.manager.position}</h5>
+                    </div>
+                    <div class="card-body bg-white">
+                        <p class="card-text ">
+                            <p class='row flex-column'>
+                                <p class='col p-3 m-0 border'>ID: ${templateObject.manager.id}</p>
+                                <p class='col p-3 m-0 border'><a href='mailto:${templateObject.manager.email}' style="text-decoration:none">${templateObject.manager.email}</a></p>
+                                <p class='col p-3 m-0 border'>${templateObject.manager.office}</p>
+                            </p>
+                        </p>
+                    </div>
+                </div>
 `
+    // console.log('manager card template \n', template)
     employeeCardsEl = employeeCardsEl.concat(template)
 }
 
@@ -92,50 +87,52 @@ const generateEngineerCards = (templateObject) => {
         return
     }
     templateObject.eng.forEach((instance) => {
-        let gitHubURL = instance.getGitHubURL;
+        let gitHubURL = instance.getGithubURL();
         let template = `
-        <div class="card m-2 p-0" style="width: 18rem; ">
-            <div class='bg-success p-4'>
-                <h4 class="card-title">${instance.name}</h4>
-                <h5 class="card-title">${instance.position}</h5>
-            </div>
-            <div class="card-body bg-white">
-                <p class="card-text ">
-                    <p class='row flex-column'>
-                        <p class='col p-3 m-0 border'>${instance.id}</p>
-                        <p class='col p-3 m-0 border'><${instance.email}</p>
-                        <p class='col p-3 m-0 border'><a href="${gitHubURL}" style='text-decoration:none;">${instance.github}</a></p>
-                    </p>
-                </p>
-            </div>
-        </div>
+                    <div class="card m-2 p-0" style="width: 18rem; ">
+                        <div class='bg-success p-4'>
+                            <h4 class="card-title">${instance.name}</h4>
+                            <h5 class="card-title">${instance.position}</h5>
+                        </div>
+                        <div class="card-body bg-white">
+                            <p class="card-text ">
+                                <p class='row flex-column'>
+                                    <p class='col p-3 m-0 border'>ID: ${instance.id}</p>
+                                    <p class='col p-3 m-0 border'><a href='mailto:${instance.email}' style="text-decoration:none">${instance.email}</a></p>
+                                    <p class='col p-3 m-0 border'><a href="${gitHubURL}" style='text-decoration:none;'>${instance.github}</a></p>
+                                </p>
+                            </p>
+                        </div>
+                    </div>
         `;
+        // console.log('eng card template \n', template)
         employeeCardsEl = employeeCardsEl.concat(template);
     })
 }
 
-const generateManagerCard = (templateObject) => {
+const generateInternCards = (templateObject) => {
     if (!templateObject.intern) {
         return
     }
     templateObject.intern.forEach((instance) => {
         let template = `
-        <div class="card m-2 p-0" style="width: 18rem; ">
-            <div class='bg-success p-4'>
-                <h4 class="card-title">${instance.name}</h4>
-                <h5 class="card-title">${instance.position}</h5>
-            </div>
-            <div class="card-body bg-white">
-                <p class="card-text ">
-                    <p class='row flex-column'>
-                        <p class='col p-3 m-0 border'>${instance.id}</p>
-                        <p class='col p-3 m-0 border'>${instance.email}</p>
-                        <p class='col p-3 m-0 border'>School: ${instance.school}</p>
-                    </p>
-                </p>
-            </div>
-        </div>
+                    <div class="card m-2 p-0" style="width: 18rem; ">
+                        <div class='bg-success p-4'>
+                            <h4 class="card-title">${instance.name}</h4>
+                            <h5 class="card-title">${instance.position}</h5>
+                        </div>
+                        <div class="card-body bg-white">
+                            <p class="card-text ">
+                                <p class='row flex-column'>
+                                    <p class='col p-3 m-0 border'>ID: ${instance.id}</p>
+                                    <p class='col p-3 m-0 border'><a href='mailto:${instance.email}' style="text-decoration:none">${instance.email}</a></p>
+                                    <p class='col p-3 m-0 border'>School: ${instance.school}</p>
+                                </p>
+                            </p>
+                        </div>
+                    </div>
         `;
+        // console.log('intern card template \n', template)
         employeeCardsEl = employeeCardsEl.concat(template);
     })
 }

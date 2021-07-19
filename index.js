@@ -1,8 +1,8 @@
-// const fs = require('fs');
+const fs = require('fs');
 const inquirer = require('inquirer');
 // const { Engineer, Intern } = require('./lib/classes.js');
 const qPrompt = require('./src/promptQuestions.js')
-// const generate = require('./src/helperFunctions.js')
+const generate = require('./src/helperFunctions.js')
 const classes = require('./lib/classes.js')
 
 //Prompt the user a series of questions to create their team
@@ -16,10 +16,12 @@ let templateObj = {
     eng: [],
     intern: [],
 }
+let employeeCardsEl = ``
 
 async function makeTeam () {
     const teamResponse = await inquirer.prompt(qPrompt.promptInit);
-    templateObj.teamName = teamResponse; //add team name
+    console.log('teamResponse', teamResponse);
+    templateObj.teamName = teamResponse.teamName; //add team name
 
     const managerResponse = await inquirer.prompt(qPrompt.promptManager)
     templateObj.manager = new classes.Manager(
@@ -56,13 +58,15 @@ async function makeTeam () {
             }
         }
     }
-    htmlTemplate = generate.generateHTML(templateObj);  //create html file with the ${teamName} as document title
-    fileName = `${templateObj.teamName[0].teamName.split(' ').join('')}.html`
-    fs.writeFile(`${templateObj.teamName[0].teamName.split(' ').join('')}.html`, htmlTemplate, (err) => {
+
+    htmlTemplate = generate.generateCards(templateObj);  //create html file with the ${teamName} as document title
+    fileName = `${templateObj.teamName.split(' ').join('')}.html` //*DONE
+    // console.log('htmlTemplate', htmlTemplate)
+    fs.writeFile(('./dist/' + fileName), htmlTemplate, (err) => {
         err ? console.error(err) : console.log('html template created!')
     });
 
-    return console.log('OBJECT for HTML WRITING', templateObj)
+    // return console.log('OBJECT for HTML WRITING', templateObj)
 }
 
 
