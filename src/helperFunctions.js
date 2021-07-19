@@ -1,27 +1,27 @@
-
+let employeeCardsEl = ``
 
 // Generate Cards
 //Employee card
 // !figure out how to change ${classAttr} to a subclass attribute
 // * Within index.js, answer questions, create file, and then append the card classes
-cardTemplate =
-`<div class="card m-2 p-0" style="width: 18rem; ">
-    <div class='bg-success p-4'>
-        <h4 class="card-title">${employeeName}</h4>
-        <h5 class="card-title">${employeeTitle}</h5>
-    </div>
-    <div class="card-body bg-white">
-        <p class="card-text ">
-            <p class='row flex-column'>
-                <p class='col p-3 m-0 border'>${id}</p>
-                <p class='col p-3 m-0 border'>${email}</p>
-                <p class='col p-3 m-0 border'>${classAttr}</p>
-            </p>
-        </p>
-    </div>
-</div>`
+// cardTemplate =
+// `<div class="card m-2 p-0" style="width: 18rem; ">
+//     <div class='bg-success p-4'>
+//         <h4 class="card-title">${employeeName}</h4>
+//         <h5 class="card-title">${employeeTitle}</h5>
+//     </div>
+//     <div class="card-body bg-white">
+//         <p class="card-text ">
+//             <p class='row flex-column'>
+//                 <p class='col p-3 m-0 border'>${id}</p>
+//                 <p class='col p-3 m-0 border'>${email}</p>
+//                 <p class='col p-3 m-0 border'>${classAttr}</p>
+//             </p>
+//         </p>
+//     </div>
+// </div>`
 
-const generateHTML = (templObj) => {
+const generateHTML = (templateObject, employeeCards) => {
     //Generate HTML
     generateTeamHTML = `<!DOCTYPE html>
     <html lang="en">
@@ -29,7 +29,7 @@ const generateHTML = (templObj) => {
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>${templObj.teamName}</title>
+        <title>${templateObject.teamName}</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     </head>
     <body>
@@ -39,6 +39,7 @@ const generateHTML = (templObj) => {
 
         <div class='container'>
             <div class = 'p-3 row flex-wrap' id='employeeCard'>
+                ${employeeCards}
             </div>  
         </div>
 
@@ -49,9 +50,93 @@ const generateHTML = (templObj) => {
     return generateTeamHTML
 }
 
-const generateCards = (arr) => { //arr = [cardTemplate1, cardTemplate2, ...]
-    arr.forEach(function (cardTemplate) {
-        document.querySelector('#employeeCard').appendChild(cardTemplate);
+// TODO: Take templateObj from index.js, and create an array that contains each employee object
+// TODO: Use the new array and generate template literals to append to the HTML file, and join them.
+
+const generateCardTempLiteral = (employeeArr) => {
+    return employeeLiteral
+}
+
+const generateCards = (templateObject) => { //arr = [cardTemplate1, cardTemplate2, ...]
+    generateManagerCard(templateObject);
+    generateEngineerCards(templateObject);
+    generateInternCards(templateObject);
+    generateHTML(templateObject, employeeCardsEl)
+}
+
+const generateManagerCard = (templateObject) => {
+    const {managerName, managerEmail, managerID, managerOffice} = templateObject.manager
+    let role = templateObject.manager.position
+    let template = `
+<div class="card m-2 p-0" style="width: 18rem; ">
+    <div class='bg-success p-4'>
+        <h4 class="card-title">${managerName}</h4>
+        <h5 class="card-title">${role}</h5>
+    </div>
+    <div class="card-body bg-white">
+        <p class="card-text ">
+            <p class='row flex-column'>
+                <p class='col p-3 m-0 border'>${managerID}</p>
+                <p class='col p-3 m-0 border'>${managerEmail}</p>
+                <p class='col p-3 m-0 border'>${managerOffice}</p>
+            </p>
+        </p>
+    </div>
+</div>
+`
+    employeeCardsEl = employeeCardsEl.concat(template)
+}
+
+const generateEngineerCards = (templateObject) => {
+    if (!templateObject.eng) {
+        return
+    }
+    templateObject.eng.forEach((instance) => {
+        let gitHubURL = instance.getGitHubURL;
+        let template = `
+        <div class="card m-2 p-0" style="width: 18rem; ">
+            <div class='bg-success p-4'>
+                <h4 class="card-title">${instance.name}</h4>
+                <h5 class="card-title">${instance.position}</h5>
+            </div>
+            <div class="card-body bg-white">
+                <p class="card-text ">
+                    <p class='row flex-column'>
+                        <p class='col p-3 m-0 border'>${instance.id}</p>
+                        <p class='col p-3 m-0 border'><${instance.email}</p>
+                        <p class='col p-3 m-0 border'><a href="${gitHubURL}" style='text-decoration:none;">${instance.github}</a></p>
+                    </p>
+                </p>
+            </div>
+        </div>
+        `;
+        employeeCardsEl = employeeCardsEl.concat(template);
+    })
+}
+
+const generateManagerCard = (templateObject) => {
+    if (!templateObject.intern) {
+        return
+    }
+    templateObject.intern.forEach((instance) => {
+        let template = `
+        <div class="card m-2 p-0" style="width: 18rem; ">
+            <div class='bg-success p-4'>
+                <h4 class="card-title">${instance.name}</h4>
+                <h5 class="card-title">${instance.position}</h5>
+            </div>
+            <div class="card-body bg-white">
+                <p class="card-text ">
+                    <p class='row flex-column'>
+                        <p class='col p-3 m-0 border'>${instance.id}</p>
+                        <p class='col p-3 m-0 border'>${instance.email}</p>
+                        <p class='col p-3 m-0 border'>School: ${instance.school}</p>
+                    </p>
+                </p>
+            </div>
+        </div>
+        `;
+        employeeCardsEl = employeeCardsEl.concat(template);
     })
 }
 
