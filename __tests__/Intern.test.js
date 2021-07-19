@@ -10,9 +10,6 @@ describe("Intern", () => {
             id: 1, 
             email: 'kenny@test.com', 
             school: 'UCLA', 
-            // getName: expect.any(Function), 
-            // getId: expect.any(Function), 
-            // getEmail: expect.any(Function), 
             getSchool: expect.any(Function), 
             getPosition: expect.any(Function)});
        });

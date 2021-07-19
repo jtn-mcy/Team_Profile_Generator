@@ -8,10 +8,7 @@ describe("Employee", () => {
         expect(employee).toMatchObject({
             name: 'Kenny', 
             id: 1, 
-            email: 'kenny@test.com', 
-            // getName: expect.any(Function), 
-            // getId: expect.any(Function), 
-            // getEmail: expect.any(Function)
+            email: 'kenny@test.com',
             });
         });
         // * NO ARGUMENT ERROR

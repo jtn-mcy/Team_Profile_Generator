@@ -8,10 +8,7 @@ describe("Engineer", () => {
         expect(engineer).toMatchObject({
             name: 'Kenny', 
             id: 1, 
-            email: 'kenny@test.com', 
-            // getName: expect.any(Function), 
-            // getId: expect.any(Function), 
-            // getEmail: expect.any(Function), 
+            email: 'kenny@test.com',
             getGithubUserName: expect.any(Function),
             getGithubURL: expect.any(Function), 
             getPosition: expect.any(Function)});

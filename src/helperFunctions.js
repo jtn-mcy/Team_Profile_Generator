@@ -1,25 +1,14 @@
 let employeeCardsEl = ``
-// Generate Cards
-//Employee card
-// !figure out how to change ${classAttr} to a subclass attribute
-// * Within index.js, answer questions, create file, and then append the card classes
-// cardTemplate =
-// `<div class="card m-2 p-0" style="width: 18rem; ">
-//     <div class='bg-success p-4'>
-//         <h4 class="card-title">${employeeName}</h4>
-//         <h5 class="card-title">${employeeTitle}</h5>
-//     </div>
-//     <div class="card-body bg-white">
-//         <p class="card-text ">
-//             <p class='row flex-column'>
-//                 <p class='col p-3 m-0 border'>${id}</p>
-//                 <p class='col p-3 m-0 border'>${email}</p>
-//                 <p class='col p-3 m-0 border'>${classAttr}</p>
-//             </p>
-//         </p>
-//     </div>
-// </div>`
 
+const generateHtmlFile = (templateObject) => { //arr = [cardTemplate1, cardTemplate2, ...]
+    generateManagerCard(templateObject);
+    generateEngineerCards(templateObject);
+    generateInternCards(templateObject);
+    htmlFile = generateHTML(templateObject, employeeCardsEl)
+    return htmlFile
+}
+
+//* HTML GENERATOR
 const generateHTML = (templateObject, employeeCards) => {
     //Generate HTML
     generateTeamHTML = `<!DOCTYPE html>
@@ -49,17 +38,7 @@ const generateHTML = (templateObject, employeeCards) => {
     return generateTeamHTML
 }
 
-// TODO: Take templateObj from index.js, and create an array that contains each employee object
-// TODO: Use the new array and generate template literals to append to the HTML file, and join them.
-
-const generateCards = (templateObject) => { //arr = [cardTemplate1, cardTemplate2, ...]
-    generateManagerCard(templateObject);
-    generateEngineerCards(templateObject);
-    generateInternCards(templateObject);
-    htmlFile = generateHTML(templateObject, employeeCardsEl)
-    return htmlFile
-}
-
+//*CARD GENERATORS
 const generateManagerCard = (templateObject) => {
     let template = `
                 <div class="card m-2 p-0" style="width: 18rem; ">
@@ -72,7 +51,7 @@ const generateManagerCard = (templateObject) => {
                             <p class='row flex-column'>
                                 <p class='col p-3 m-0 border'>ID: ${templateObject.manager.id}</p>
                                 <p class='col p-3 m-0 border'><a href='mailto:${templateObject.manager.email}' style="text-decoration:none">${templateObject.manager.email}</a></p>
-                                <p class='col p-3 m-0 border'>${templateObject.manager.office}</p>
+                                <p class='col p-3 m-0 border'>Office Number: ${templateObject.manager.office}</p>
                             </p>
                         </p>
                     </div>
@@ -99,7 +78,7 @@ const generateEngineerCards = (templateObject) => {
                                 <p class='row flex-column'>
                                     <p class='col p-3 m-0 border'>ID: ${instance.id}</p>
                                     <p class='col p-3 m-0 border'><a href='mailto:${instance.email}' style="text-decoration:none">${instance.email}</a></p>
-                                    <p class='col p-3 m-0 border'><a href="${gitHubURL}" style='text-decoration:none;'>${instance.github}</a></p>
+                                    <p class='col p-3 m-0 border'><a href="${gitHubURL}" style='text-decoration:none;'>Github: ${instance.github}</a></p>
                                 </p>
                             </p>
                         </div>
@@ -138,6 +117,5 @@ const generateInternCards = (templateObject) => {
 }
 
 module.exports = {
-    generateHTML, //will create the HTML file
-    generateCards //Takes an array of cards and append each card into the HTML id=employeeCard
+    generateHtmlFile //Takes an array of cards and append each card into the HTML id=employeeCard
 }

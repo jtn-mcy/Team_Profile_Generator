@@ -1,6 +1,5 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
-// const { Engineer, Intern } = require('./lib/classes.js');
 const qPrompt = require('./src/promptQuestions.js')
 const generate = require('./src/helperFunctions.js')
 const classes = require('./lib/classes.js')
@@ -8,19 +7,15 @@ const classes = require('./lib/classes.js')
 //Prompt the user a series of questions to create their team
 //
 let addMoreEmployees = true;
-let engCount = 0
-let internCount = 0
 let templateObj = {
     teamName: '',
     manager: '',
     eng: [],
     intern: [],
 }
-let employeeCardsEl = ``
 
 async function makeTeam () {
     const teamResponse = await inquirer.prompt(qPrompt.promptInit);
-    console.log('teamResponse', teamResponse);
     templateObj.teamName = teamResponse.teamName; //add team name
 
     const managerResponse = await inquirer.prompt(qPrompt.promptManager)
@@ -45,7 +40,7 @@ async function makeTeam () {
                     newEngResponse.engineerEmail,
                     newEngResponse.engineerGithub 
                     ) 
-                templateObj.eng = [...templateObj.eng, newEngInst]; //create engineer and add to templateObj eng property
+                templateObj.eng = [...templateObj.eng, newEngInst]; //create engineer instanceand add to templateObj.eng
             } else {
                 let newInternResponse = await inquirer.prompt(qPrompt.promptIntern)
                 let newIntInst = new classes.Intern(
@@ -54,20 +49,17 @@ async function makeTeam () {
                     newInternResponse.internEmail,
                     newInternResponse.internSchool
                 )
-                templateObj.intern = [...templateObj.intern, newIntInst] //create intern and add to templateObj intern property
+                templateObj.intern = [...templateObj.intern, newIntInst] //create intern instance and add to templateObj.intern
             }
         }
     }
 
-    htmlTemplate = generate.generateCards(templateObj);  //create html file with the ${teamName} as document title
+    htmlTemplate = generate.generateHtmlFile(templateObj);  //create html file with the ${teamName} as document title
     fileName = `${templateObj.teamName.split(' ').join('')}.html` //*DONE
     // console.log('htmlTemplate', htmlTemplate)
     fs.writeFile(('./dist/' + fileName), htmlTemplate, (err) => {
         err ? console.error(err) : console.log('html template created!')
     });
-
-    // return console.log('OBJECT for HTML WRITING', templateObj)
 }
-
 
 makeTeam()

@@ -10,10 +10,6 @@ describe("Manager", () => {
                 id: 1, 
                 email: 'kenny@test.com', 
                 office: 101, 
-                // getName: expect.any(Function), 
-                // getId: expect.any(Function), 
-                // getEmail: expect.any(Function), 
-                // getOffice: expect.any(Function), 
                 getPosition: expect.any(Function)})
        });
         it("should throw an error if negative number", () => {
