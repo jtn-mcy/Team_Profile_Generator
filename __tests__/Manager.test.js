@@ -10,7 +10,8 @@ describe("Manager", () => {
                 id: 1, 
                 email: 'kenny@test.com', 
                 office: 101, 
-                getPosition: expect.any(Function)})
+                getOffice: expect.any(Function),
+                getRole: expect.any(Function)})
        });
         it("should throw an error if negative number", () => {
             const cb = () => new Manager('Kenny', 1, "kenny@test.com", -101);
@@ -30,10 +31,15 @@ describe("Manager", () => {
     });
     
     describe('Methods', () => {
-        it('should obtain the position of the employee', () => {
+        it('should obtain the role when getRole is called', () => {
             const manager = new Manager('Kenny', 1, "kenny@test.com", 101);
-            position = manager.getPosition();
+            position = manager.getRole();
             expect(position).toEqual('Manager');
+        })
+        it('should obtain the office number when getOffice is called', () => {
+            const manager = new Manager('Kenny', 1, "kenny@test.com", 101);
+            office = manager.getOffice();
+            expect(office).toEqual(101);
         })
     });
 })

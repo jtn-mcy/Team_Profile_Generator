@@ -45,4 +45,22 @@ describe("Employee", () => {
              expect(cb).toThrowError(err);
         });
     });
+    describe("Methods", () => {
+        it("should return a name when getName is called", () => {
+            const employee = new Employee('Kenny', 1, "kenny@test.com")
+            expect(employee.getName()).toEqual('Kenny')
+        });
+        it("should return a ID when getId is called", () => {
+            const employee = new Employee('Kenny', 1, "kenny@test.com")
+            expect(employee.getId()).toEqual(1)
+        });
+        it("should return an email address when getEmail is called", () => {
+            const employee = new Employee('Kenny', 1, "kenny@test.com")
+            expect(employee.getEmail()).toEqual('kenny@test.com')
+        });
+        it("should return a role when getRole is called", () => {
+            const employee = new Employee('Kenny', 1, "kenny@test.com")
+            expect(employee.getRole()).toEqual('Employee')
+        });
+    })
 });

@@ -34,16 +34,17 @@ const promptInit = [
  *  *managerOffice: office
  * *}
  */
+
 const promptManager = [
     {
         type: 'input',
         message: 'Enter Manager\'s Name',
-        name: 'managerName'
+        name: 'managerName',
     },
     {   
         type: 'number',
         message: 'Enter Manager ID',
-        name: 'managerID'
+        name: 'managerID',
     },
     { 
         type: 'email',
@@ -53,7 +54,7 @@ const promptManager = [
     {
         type: 'number',
         message: 'Enter Manager office number',
-        name: 'managerOffice'
+        name: 'managerOffice',
     }
 ]
 

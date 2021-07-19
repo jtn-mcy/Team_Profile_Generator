@@ -11,19 +11,19 @@ describe("Intern", () => {
             email: 'kenny@test.com', 
             school: 'UCLA', 
             getSchool: expect.any(Function), 
-            getPosition: expect.any(Function)});
+            getRole: expect.any(Function)});
        });
     });
     
     describe("Methods", () => {
-        it('should obtain the school of the intern', () => {
+        it('should obtain the school when getSchool is called', () => {
             const intern = new Intern('Kenny', 1, "kenny@test.com", 'UCLA');
             school = intern.getSchool();
             expect(school).toEqual('UCLA');
         });
-        it('should obtain the position of the employee', () => {
+        it('should obtain the position when getRole is called', () => {
             const intern = new Intern('Kenny', 1, "kenny@test.com", 'UCLA');
-            position = intern.getPosition();
+            position = intern.getRole();
             expect(position).toEqual('Intern');
         });
     });
