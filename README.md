@@ -15,7 +15,7 @@ Use a Node.js application to create a team of employees on a software engineerin
 
 The user runs index.js and fills out prompts which include team name and filling out a roster of a manager, engineers, and interns.  There is no maximum amount of employees the user can create.  The user can also run tests to verify that the class.js contains classes that will throw if given incorrect arguments.  Once the user has completed all the prompts, they can select the option to exit and create the HTML file and it will be created in the ./dist/ folder with the filename named after their team.
 
-![Sample HTML](.\assets\readmeScreenshot.png)
+<img src=".\assets\readmeScreenshot.png">
 
 ## Installation
 
