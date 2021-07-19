@@ -19,15 +19,18 @@ The user runs index.js and fills out prompts which include team name and filling
 
 ## Installation
 
+Install node.js, the inquirer and jest packages from npmjs.com.  Clone the folder from the repository to the desktop.
+
 [Github Link](https://github.com/NguyenJohnnyT/Team_Profile_Generator) 
 
 [Author Github Profile](https://github.com/NguyenJohnnyT)
 
-[Sample use video](https://streamable.com/661wdo)
 
 ## Usage
 
-Install node.js, the inquirer and jest packages from npmjs.com.  Clone the folder from the repository to the desktop and in the terminal, run index.js.  Answer a series of prompts to create a team and, when finished, select the create HTML option.  The HTML file will be created in the ./dist/ folder with the teamname as the filename.
+[Sample use video](https://streamable.com/661wdo)
+
+Run index.js through a node.js terminal.  Answer a series of prompts to create a team and, when finished, select the create HTML option.  The HTML file will be created in the ./dist/ folder with the teamname as the filename.
 
 ## License
 
