@@ -84,7 +84,6 @@ const generateEngineerCards = (templateObject) => {
                         </div>
                     </div>
         `;
-        // console.log('eng card template \n', template)
         employeeCardsEl = employeeCardsEl.concat(template);
     })
 }
